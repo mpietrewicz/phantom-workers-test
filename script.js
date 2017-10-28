@@ -1,9 +1,10 @@
 //every worker gets unique port, get it from a process environment variables
 var system = require("system");
-var port = system.env['PHANTOM_WORKER_PORT'];
 var host = system.env['PHANTOM_WORKER_HOST'];
+var port = system.env['PHANTOM_WORKER_PORT'];
 
 require('webserver').create().listen(host + ':' + port, function (req, res) {
+	console.log(host+':'+port);
 	//standard phantomjs script which get input parametrs from request
 	var page = require('webpage').create();
 	page.open(JSON.parse(req.post).url, function(status) {
