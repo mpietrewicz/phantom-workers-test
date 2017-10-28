@@ -3,7 +3,7 @@ var system = require("system");
 var host = system.env['PHANTOM_WORKER_HOST'];
 var port = system.env['PHANTOM_WORKER_PORT'];
 
-require('webserver').create().listen(host + ':' + port, function (req, res) {
+require('webserver').create().listen(port, function (req, res) {
 	console.log(host+':'+port);
 	//standard phantomjs script which get input parametrs from request
 	var page = require('webpage').create();
