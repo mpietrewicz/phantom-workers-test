@@ -3,7 +3,7 @@ var phantom = require("phantom-workers")({
 	timeout: 10000,
 	portLeftBoundary: 60000,
 	portRightBoundary: 60000,
-	numberOfWorkers: 10
+	numberOfWorkers: 20
 });
 
 phantom.start(function(startErr) {
