@@ -1,6 +1,7 @@
 var phantom = require("phantom-workers")({
 	pathToPhantomScript: "script.js",
-	timeout: 5000,
+	timeout: 10000,
+	portLeftBoundary: 60000,
 	numberOfWorkers: 10
 });
 
