@@ -13,16 +13,16 @@ require('webserver').create().listen(port, function (req, res) {
 		// });
 
 		var content = page.evaluate(function(){
-
-			var text = [];
-			$("h2:contains('lista promowanych ofert')").parents("section").find("article").each(function()
+			var ads = [];
+			$("h2:contains('lista ofert')").parents("section").find("article").each(function()
 			{
-				text.push($(this).find("h2 a").text());
-				text.push($(this).find("h2 a").attr("href"));
-				text.push($(this).find("div div span span:contains(' zł')").text());
+				ads.push({
+					"title": $(this).find("h2 a").text(),
+					"url": $(this).find("h2 a").attr("href"),
+					"price": $(this).find("div div span span:contains(' zł')").text()
+					});
 			});
-
-			return text;
+			return ads;
 		});
 
 		//write the result to the response
