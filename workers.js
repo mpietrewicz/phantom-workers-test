@@ -1,9 +1,10 @@
 var phantom = require("phantom-workers")({
 	pathToPhantomScript: "script.js",
+	phantomPath: require("phantomjs").path,
 	timeout: 10000,
 	portLeftBoundary: 60000,
 	portRightBoundary: 60000,
-	numberOfWorkers: 20
+	numberOfWorkers: 10
 });
 
 phantom.start(function(startErr) {
