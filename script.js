@@ -30,5 +30,6 @@ require('webserver').create().listen(port, function (req, res) {
 		res.setHeader('Content-Type', 'application/json');
 	  res.write(JSON.stringify({ content: content }));
 	  res.close();
+	  page.close();
 	});
 });
