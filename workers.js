@@ -2,8 +2,6 @@ var phantom = require("phantom-workers")({
 	pathToPhantomScript: "script.js",
 	phantomPath: require("phantomjs").path,
 	timeout: 10000,
-	//portLeftBoundary: 60000,
-	//portRightBoundary: 60000,
 	numberOfWorkers: 10
 });
 
@@ -16,7 +14,8 @@ phantom.start(function(startErr) {
 		if (err) {
 			return console.error('Error while executing:', err);
 		}
-
-		console.log("Service title: " +res.title);
+		else {
+			return console.log("Phantom started");
+		}
 	});
 });

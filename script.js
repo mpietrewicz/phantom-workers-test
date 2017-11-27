@@ -2,15 +2,13 @@
 var system = require("system");
 var host = system.env['PHANTOM_WORKER_HOST'];
 var port = system.env['PHANTOM_WORKER_PORT'];
+console.log(host+':'+port);
 
 require('webserver').create().listen(port, function (req, res) {
-	console.log(host+':'+port);
+	var startProcessDate = new Date();
 	var page = require('webpage').create();
 	page.open(req.post.url, function(status) {
 		page.injectJs("jquery.min.js");
-    // var title = page.evaluate(function() {
-	  //   return document.title;
-		// });
 
 		var content = page.evaluate(function(){
 			var ads = [];
@@ -27,6 +25,10 @@ require('webserver').create().listen(port, function (req, res) {
 
 		//write the result to the response
 		res.statusCode = 200;
+		if(req.post.url != undefined) {
+			console.log("Evaluate page: " +req.post.url);
+		}
+		console.log("[Time:	" +(new Date() - startProcessDate) +" ms] " +host +':' +port);
 		res.setHeader('Content-Type', 'application/json');
 	  res.write(JSON.stringify({ content: content }));
 	  res.close();

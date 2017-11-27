@@ -31,6 +31,7 @@
     "should": "5.0.1"
   },
   "scripts": {
+    "start": "node workers.js",
     "test": "mocha test/test.js --timeout 8000"
   },
   "main": "index.js",
