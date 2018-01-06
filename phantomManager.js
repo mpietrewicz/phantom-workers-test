@@ -40,30 +40,18 @@ PhantomManager.prototype.start = function (cb) {
     var workerMainErrorMsg = '';
 
     for (var i = 0; i < self.options.numberOfWorkers; i++) {
-        if(i==0) {
-            self._phantomInstances.push(new PhantomWorker({
-                pathToPhantomScript: self.options.pathToPhantomScript,
-                hostEnvVarName: self.options.hostEnvVarName,
-                portEnvVarName: self.options.portEnvVarName,
-                host: self.options.host,
-                portLeftBoundary: 60000,
-                portRightBoundary: 60000,
-                phantomPath: self.options.phantomPath,
-                env: self.options.workerEnv
-            }));
-        }
-        else {
-            self._phantomInstances.push(new PhantomWorker({
-                pathToPhantomScript: self.options.pathToPhantomScript,
-                hostEnvVarName: self.options.hostEnvVarName,
-                portEnvVarName: self.options.portEnvVarName,
-                host: self.options.host,
-                portLeftBoundary: self.options.portLeftBoundary,
-                portRightBoundary: self.options.portRightBoundary,
-                phantomPath: self.options.phantomPath,
-                env: self.options.workerEnv
-            }));
-        }
+        var port = 60000;
+        self._phantomInstances.push(new PhantomWorker({
+            pathToPhantomScript: self.options.pathToPhantomScript,
+            hostEnvVarName: self.options.hostEnvVarName,
+            portEnvVarName: self.options.portEnvVarName,
+            host: self.options.host,
+            portLeftBoundary: port+i,
+            portRightBoundary: port+i,
+            phantomPath: self.options.phantomPath,
+            env: self.options.workerEnv
+        }));
+
         self._phantomInstances[i].start(function(err) {
             if (err) {
                 if (err.mainReason && workerMainErrorMsg === '') {

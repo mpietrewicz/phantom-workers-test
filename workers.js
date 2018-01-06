@@ -1,8 +1,8 @@
 var phantom = require("phantom-workers")({
 	pathToPhantomScript: "script.js",
 	phantomPath: require("phantomjs").path,
-	timeout: 10000,
-	numberOfWorkers: 10
+	timeout: 55000,
+	numberOfWorkers: 20
 });
 
 phantom.start(function(startErr) {
